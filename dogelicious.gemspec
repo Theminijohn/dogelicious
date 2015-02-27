@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = "dogelicious"
   spec.version       = Dogelicious::VERSION
   spec.authors       = ["The Mini John"]
-  spec.email         = ["admin@phoenix-prime.gr"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.email         = ["the@minijohn.me"]
+  spec.summary       = %q{Convert broing English into doge!}
+  spec.description   = %q{English to Doge translation}
+  spec.homepage      = "http://www.minijohn.me"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -18,6 +18,8 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.6"
-  spec.add_development_dependency "rake"
+  spec.add_dependency 'engtagger'
+
+  spec.add_development_dependency 'bundler', '~> 1.6'
+  spec.add_development_dependency 'rake'
 end

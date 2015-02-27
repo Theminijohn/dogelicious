@@ -1,3 +1,3 @@
-module Dogelicious
+class Dogelicious
   VERSION = "0.0.1"
 end
