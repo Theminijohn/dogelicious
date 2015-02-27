@@ -1,29 +1,35 @@
 # Dogelicious
 
-TODO: Write a gem description
+Convert English to [Doge](http://en.wikipedia.org/wiki/Doge_(meme))!
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'dogelicious'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install dogelicious
+We are using [EngTagger](https://github.com/yohasebe/engtagger), an English Part-of-Speech Tagger Library; a Ruby port of Lingua::EN::Tagger. Parsing is not perfect, but it works.
 
 ## Usage
+There are several ways of using Dogeify. The first way is to go through the Dogelicious class itself.
+    require 'dogelicious'
 
-TODO: Write usage instructions here
+    dogeifier = Dogelicious.new
+    dogeifier.process('My grandmom gave me a sweater for Christmas.')
+    # => "so grandmom. such sweater. very christmas. wow."
 
-## Contributing
+The second way is to modify the String or Array classes by including either core extension.
 
-1. Fork it ( https://github.com/[my-github-username]/dogelicious/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+    require 'dogelicious/all'
+
+    'My grandmom gave me a sweater for Christmas.'.dogeify
+    # => "so grandmom. such sweater. very christmas. wow."
+
+    ['I like turtles.', 'It is during our darkest moments that we must focus to see the light.'].dogeify
+    # => ["so turtles. wow.", "so darkest. such moments. very light. wow."]
+
+## Options
+For each of the above method calls, an optional `options` hash can be passed in
+to specify additional processing preferences.  Currently, only the `ignore`
+option exists, accepting a string/regex value (or array of string/regex values)
+that should not be converted to doge.
+
+    dogifier.process('My grandmom gave me a sweater for Christmas.', ignore: 'grandmom')
+    # => "so sweater. such christmas. wow."
+
+    'My grandmom gave me a sweater for Christmas'.dogeify(ignore: [/christmas/i, 'sweater'])
+    # => "so grandmom. wow."
